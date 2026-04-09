@@ -1,0 +1,48 @@
+# HCDE 530 Week 2 Rules
+
+## Scope
+- Apply these rules only to Week 2 work in `week2/`.
+- Keep Week 2 files self-contained and easy to run locally.
+
+## Directory Structure (Week 2)
+Use and maintain this structure:
+
+week2/
+- .gitignore
+- demo_responses.csv
+- demo_word_count.py
+- dashboard.html
+
+## Directory Structure Maintenance
+- When files in `week2/` are added, removed, or renamed, update this section in `.cursorrules` in the same change.
+- Keep the structure list concise and accurate so it reflects the current state of `week2/`.
+
+## Python Conventions
+- Use Python 3 syntax and PEP 8 style.
+- Prefer small, readable functions over long scripts.
+- Add short docstrings for non-trivial functions.
+- Use clear variable names (for example `responses`, `word_counts`).
+- When reading files, use context managers (`with open(...)`).
+
+## CSV and Data Handling
+- Assume CSV files are UTF-8 encoded.
+- Use `csv.DictReader` for row-based datasets with headers.
+- Handle missing or empty values defensively when computing metrics.
+- Keep source CSV files unchanged unless explicitly requested.
+
+## Dashboard / Frontend Conventions
+- Keep dashboard files standalone when possible (`.html` + inline JS/CSS).
+- Prefer plain JavaScript unless a library is explicitly requested.
+- Show key summary metrics first, then detailed tables/charts.
+- Ensure dashboards fail gracefully with clear messages if data cannot load.
+
+## Output and File Changes
+- Make minimal, targeted edits.
+- Do not delete user data files unless explicitly requested.
+- Keep changes inside `week2/` unless explicitly requested.
+- Add brief comments only where logic is not self-evident.
+
+## Validation
+- After Python edits, run the script if possible to verify behavior.
+- After HTML/JS edits, ensure the page works with a local server.
+- If assumptions are required, state them clearly in the final response.

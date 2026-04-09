@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 2 CSV Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #60a5fa;
+      --border: #374151;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(180deg, #0b1224, var(--bg));
+      color: var(--text);
+      padding: 24px;
+    }
+    h1 { margin: 0 0 6px; font-size: 1.7rem; }
+    p { margin: 0; color: var(--muted); }
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .label { font-size: 0.85rem; color: var(--muted); }
+    .value { font-size: 1.6rem; font-weight: 700; margin-top: 4px; }
+    .section {
+      margin-top: 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    h2 { margin: 0 0 12px; font-size: 1.1rem; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 42px;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    .bar-track {
+      height: 16px;
+      background: #0b1224;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, var(--accent));
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { color: var(--muted); font-weight: 600; }
+    .status { margin-top: 10px; color: var(--muted); font-size: 0.9rem; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  </style>
+</head>
+<body>
+  <h1>Week 2 Responses Dashboard</h1>
+  <p>Data source: <span class="mono">demo_responses.csv</span></p>
+
+  <div class="grid" id="kpis"></div>
+
+  <section class="section">
+    <h2>Responses by Role</h2>
+    <div id="roleBars"></div>
+  </section>
+
+  <section class="section">
+    <h2>Word Count Distribution</h2>
+    <div id="wordBins"></div>
+  </section>
+
+  <section class="section">
+    <h2>Data Preview</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Participant</th>
+          <th>Role</th>
+          <th>Word Count</th>
+          <th>Response</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="status" id="status"></div>
+  </section>
+
+  <script>
+    function parseCsv(text) {
+      const rows = [];
+      let row = [];
+      let cell = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+
+        if (ch === '"') {
+          if (inQuotes && next === '"') {
+            cell += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+          continue;
+        }
+        if (ch === "," && !inQuotes) {
+          row.push(cell);
+          cell = "";
+          continue;
+        }
+        if ((ch === "\n" || ch === "\r") && !inQuotes) {
+          if (ch === "\r" && next === "\n") i++;
+          row.push(cell);
+          if (row.some(v => v.length > 0)) rows.push(row);
+          row = [];
+          cell = "";
+          continue;
+        }
+        cell += ch;
+      }
+
+      if (cell.length > 0 || row.length > 0) {
+        row.push(cell);
+        rows.push(row);
+      }
+
+      const headers = rows[0] || [];
+      return rows.slice(1).map(cols => {
+        const item = {};
+        headers.forEach((h, idx) => (item[h] = cols[idx] || ""));
+        return item;
+      });
+    }
+
+    function countWords(text) {
+      return text.trim().split(/\s+/).filter(Boolean).length;
+    }
+
+    function mean(nums) {
+      return nums.reduce((a, b) => a + b, 0) / (nums.length || 1);
+    }
+
+    function makeBarRows(container, dataMap) {
+      const max = Math.max(...Object.values(dataMap), 1);
+      container.innerHTML = "";
+      Object.entries(dataMap)
+        .sort((a, b) => b[1] - a[1])
+        .forEach(([label, value]) => {
+          const percent = (value / max) * 100;
+          const row = document.createElement("div");
+          row.className = "bar-row";
+          row.innerHTML = `
+            <div>${label}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${percent}%"></div></div>
+            <div>${value}</div>
+          `;
+          container.appendChild(row);
+        });
+    }
+
+    async function run() {
+      const status = document.getElementById("status");
+      try {
+        const res = await fetch("demo_responses.csv");
+        if (!res.ok) throw new Error("Could not load CSV");
+        const csvText = await res.text();
+        const data = parseCsv(csvText);
+
+        const wordCounts = data.map(d => countWords(d.response || ""));
+        const roles = {};
+        data.forEach(d => {
+          roles[d.role] = (roles[d.role] || 0) + 1;
+        });
+
+        const kpis = [
+          ["Total Responses", data.length],
+          ["Unique Roles", Object.keys(roles).length],
+          ["Shortest", `${Math.min(...wordCounts)} words`],
+          ["Longest", `${Math.max(...wordCounts)} words`],
+          ["Average", `${mean(wordCounts).toFixed(1)} words`]
+        ];
+
+        const kpiWrap = document.getElementById("kpis");
+        kpiWrap.innerHTML = "";
+        kpis.forEach(([label, value]) => {
+          const c = document.createElement("div");
+          c.className = "card";
+          c.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
+          kpiWrap.appendChild(c);
+        });
+
+        makeBarRows(document.getElementById("roleBars"), roles);
+
+        const bins = { "0-29": 0, "30-39": 0, "40-49": 0, "50+": 0 };
+        wordCounts.forEach(n => {
+          if (n < 30) bins["0-29"]++;
+          else if (n < 40) bins["30-39"]++;
+          else if (n < 50) bins["40-49"]++;
+          else bins["50+"]++;
+        });
+        makeBarRows(document.getElementById("wordBins"), bins);
+
+        const body = document.getElementById("tableBody");
+        body.innerHTML = "";
+        data.forEach(d => {
+          const tr = document.createElement("tr");
+          const words = countWords(d.response || "");
+          tr.innerHTML = `
+            <td>${d.participant_id}</td>
+            <td>${d.role}</td>
+            <td>${words}</td>
+            <td>${d.response}</td>
+          `;
+          body.appendChild(tr);
+        });
+
+        status.textContent = `Loaded ${data.length} rows from demo_responses.csv`;
+      } catch (err) {
+        status.textContent = "Could not load data. Open this file using a local web server (not file://).";
+      }
+    }
+
+    run();
+  </script>
+</body>
+</html>

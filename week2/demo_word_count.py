@@ -1,7 +1,9 @@
+# a script to process and count words in a CSV file
 import csv
+from pathlib import Path
 
 
-# Load the CSV file
+# Load the CSV file 
 filename = "demo_responses.csv"
 responses = []
 
@@ -10,7 +12,7 @@ with open(filename, newline="", encoding="utf-8") as f:
     for row in reader:
         responses.append(row)
 
-
+# a function to count the number of words in a response 
 def count_words(response):
     """Count the number of words in a response string.
 
@@ -23,9 +25,9 @@ def count_words(response):
 # Count words in each response and print a row-by-row summary
 print(f"{'ID':<6} {'Role':<22} {'Words':<6} {'Response (first 60 chars)'}")
 print("-" * 75)
-
+# a list to store the words counts 
 word_counts = []
-
+# loop through the responses and count the words 
 for row in responses:
     participant = row["participant_id"]
     role = row["role"]
