@@ -9,9 +9,11 @@ Use and maintain this structure:
 
 week2/
 - .gitignore
+- app_review_word_count.py
 - demo_responses.csv
 - demo_word_count.py
 - dashboard.html
+- week2.md
 
 ## Directory Structure Maintenance
 - When files in `week2/` are added, removed, or renamed, update this section in `.cursorrules` in the same change.
