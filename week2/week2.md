@@ -12,10 +12,7 @@ For **documentation**, I’m framing competency 2 around **comments in code** an
 
 A small frustration was when **`demo_word_count.py` wouldn’t run** (for example, the CSV path / working-directory issue). Separately, I found it **easy to read and to write short comments above a line of code**—that helped me connect what the script was doing to plain language.
 
-## Connections to my HCD practice
-
-*(Optional — add when ready: e.g. how traceable analysis, clear handoffs, or explaining methods to teammates relates to scripts and comments.)*
-
 ## What I want to get better at next
 
-*(Optional — add one concrete next step when you’re ready.)*
+
+Something I want to get better at is understanding what each ling of code is doing, as well as when youre running the code, where is it running from. After some frustration in class i was able to figure it wasn't looking in the right place. I also want to get more familiar with cursor and gihub as it a bit intimidating. One problem I am having it when clicking the commit button it doesn't load at github and I have to prompt the agent. 

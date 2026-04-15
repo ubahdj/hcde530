@@ -54,18 +54,18 @@ reviews = [
     "Overall I recommend this app because it balances simplicity with useful functionality.",
 ]
 
-
+#This functions is used to count the numder of the words in the string 
 def count_words(text):
     """Return the number of words in a string."""
     return len(text.split())
 
-
+#this is to check that the number is exactly 50 
 if len(reviews) != 50:
     raise ValueError("Expected exactly 50 reviews in the list.")
-
+# this is to pring the review, words and preview 
 print(f"{'Review #':<10} {'Words':<6} {'Preview'}")
 print("-" * 72)
-
+#This counts the words in the review 
 word_counts = []
 for i, review in enumerate(reviews, start=1):
     words = count_words(review)

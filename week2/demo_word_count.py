@@ -3,8 +3,8 @@ import csv
 from pathlib import Path
 
 
-# Load the CSV file 
-filename = "demo_responses.csv"
+# Load the CSV file (next to this script, regardless of cwd)
+filename = Path(__file__).resolve().parent / "demo_responses.csv"
 responses = []
 
 with open(filename, newline="", encoding="utf-8") as f:
