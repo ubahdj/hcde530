@@ -1,0 +1,51 @@
+name,role,row
+Alex,Designer,first entry from design team
+Jordan,Engineer,backend api update complete
+Sam,Product Manager,weekly planning notes shared
+Taylor,Researcher,user interview summary drafted
+Morgan,Developer Advocate,community feedback collected
+,Engineer,forgot to include a name here
+Casey,designer,   messy spacing before this sentence
+Riley,Data Analyst,MIXED case TEXT from dashboard export
+Jamie,Intern,
+  ,Research Assistant,blank name with spaces only
+Parker,QA tester,needs follow up on bug triage
+Avery,Student,second draft of reflection notes
+Quinn,Engineer, multiple leading spaces in this row value
+Harper,Project Lead,FINAL review comments added
+Drew,Engineer,api endpoint still needs auth check
+Emerson,Designer,updated figma file with alt layout
+Finley,Student,late submission but complete answers
+Gray,Researcher,interview notes pending cleanup
+Hayden,Product Manager,roadmap review moved to friday
+Indigo,Data Analyst,weekly metrics export failed once
+Jules,QA Tester,retested login flow after patch
+Kai,Engineer,   added null check for edge case
+Lane,Intern,shadowed sprint planning session
+Micah,Developer Advocate,published changelog draft to docs
+Noel,Engineer,migrated script from notebook to cli
+Oakley,Research Assistant,collected usability scores
+Peyton,Student,made typo fixes in final report
+Reese,Designer,prototype v2 shared with team
+Sawyer,Engineer,refactor complete tests still running
+Terry,QA tester,found flaky test in ci pipeline
+Uma,Product Manager,defined acceptance criteria
+Vale,Researcher,need consent form confirmation
+Winter,Data Analyst,compiled response stats
+Xen,Engineer,handled csv rows with missing values
+Yael,Intern,helped with spreadsheet formatting
+Zion,Student,submitted reflection after revision
+,Engineer,left name blank again for testing
+Arden,Designer,   spacing issue appears in this note
+Blaire,Researcher,MIXED casing SHOULD be normalized
+Cruz,Engineer,add validation for empty role field
+Devon,Product Manager,meeting notes uploaded to drive
+Ellis,QA Tester,regression checklist completed
+Flynn,Student,
+Gale,Developer Advocate,community office hours recap
+Hollis,Engineer,added csv header guard
+Ivory,Research Assistant,transcribed three interviews
+Jaden,Designer,new icon set exported
+Keegan,Data Analyst,dashboard labels need cleanup
+Logan,Engineer,hotfix deployed to staging
+Marley,Product Manager,aligned milestones with team

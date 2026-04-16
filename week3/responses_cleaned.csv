@@ -1,0 +1,48 @@
+name,role,row
+Alex,Designer,First entry from design team
+Jordan,Engineer,Backend api update complete
+Sam,Product Manager,Weekly planning notes shared
+Taylor,Researcher,User interview summary drafted
+Morgan,Developer Advocate,Community feedback collected
+Casey,designer,Messy spacing before this sentence
+Riley,Data Analyst,Mixed case text from dashboard export
+Jamie,Intern,
+Parker,QA tester,Needs follow up on bug triage
+Avery,Student,Second draft of reflection notes
+Quinn,Engineer,Multiple leading spaces in this row value
+Harper,Project Lead,Final review comments added
+Drew,Engineer,Api endpoint still needs auth check
+Emerson,Designer,Updated figma file with alt layout
+Finley,Student,Late submission but complete answers
+Gray,Researcher,Interview notes pending cleanup
+Hayden,Product Manager,Roadmap review moved to friday
+Indigo,Data Analyst,Weekly metrics export failed once
+Jules,QA Tester,Retested login flow after patch
+Kai,Engineer,Added null check for edge case
+Lane,Intern,Shadowed sprint planning session
+Micah,Developer Advocate,Published changelog draft to docs
+Noel,Engineer,Migrated script from notebook to cli
+Oakley,Research Assistant,Collected usability scores
+Peyton,Student,Made typo fixes in final report
+Reese,Designer,Prototype v2 shared with team
+Sawyer,Engineer,Refactor complete tests still running
+Terry,QA tester,Found flaky test in ci pipeline
+Uma,Product Manager,Defined acceptance criteria
+Vale,Researcher,Need consent form confirmation
+Winter,Data Analyst,Compiled response stats
+Xen,Engineer,Handled csv rows with missing values
+Yael,Intern,Helped with spreadsheet formatting
+Zion,Student,Submitted reflection after revision
+Arden,Designer,Spacing issue appears in this note
+Blaire,Researcher,Mixed casing should be normalized
+Cruz,Engineer,Add validation for empty role field
+Devon,Product Manager,Meeting notes uploaded to drive
+Ellis,QA Tester,Regression checklist completed
+Flynn,Student,
+Gale,Developer Advocate,Community office hours recap
+Hollis,Engineer,Added csv header guard
+Ivory,Research Assistant,Transcribed three interviews
+Jaden,Designer,New icon set exported
+Keegan,Data Analyst,Dashboard labels need cleanup
+Logan,Engineer,Hotfix deployed to staging
+Marley,Product Manager,Aligned milestones with team
