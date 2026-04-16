@@ -70,6 +70,7 @@ if avg_experience is not None:
 else:
     print("\nAverage years of experience: n/a")
 
+
 # Find the top 5 highest satisfaction scores
 # This was to find the actual scores and sorting them in descending order 
 scored_rows = []
