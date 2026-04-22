@@ -1,18 +1,11 @@
 # Week 3 Competency Claim
 
-## What it means
-Loading messy real-world data with Python, finding what is broken, and fixing it so the script runs cleanly on any valid input. Reading error messages as diagnostic information. Writing scripts that produce consistent, repeatable output.
+
 
 ## Claim
-This week I demonstrated that I can load messy CSV data in Python, use error messages to diagnose failures, and refactor the code so it runs reliably and produces consistent outputs.
+This week I demonstrated that I can load messy CSV data in Python, use error messages to diagnose failures, and refactor the code so it runs reliably and produces consistent outputs. 
 
-## Evidence
-- `week3/week3_survey_messy.csv`: messy, real-world-style input data (includes non-numeric text like `"fifteen"` in `experience_years`).
-- `week3/week3_analysis_buggy.py`:
-  - reads CSV data with `csv.DictReader`
-  - fixes the crash caused by invalid numeric conversion by validating/parsing safely
-  - computes consistent summary outputs (role counts, average experience, top satisfaction scores)
-  - writes a repeatable cleaned output file: `week3/week3_survey_cleaned.csv`
+I was able to use the agent to help explain what the error was to me and what would be the best next steps. When the output was "Fixed error: ValueError invalid literal" I was able to understadn that the there was number that was an invalid intger typed as 'fifteen'. To fix that I converted  experience_years with try/except, and skip rows that aren't numeric. 
 
-## Reflection
-The key lesson was that “messy data” is normal. Scripts should assume fields can be missing, formatted inconsistently, or contain unexpected text. The fastest way to improve reliability was to treat error messages (like `ValueError`) as clues, then add small, well-named helper functions so the same cleaning/parsing rules are applied consistently every run.
+
+
