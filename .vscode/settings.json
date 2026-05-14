@@ -1,5 +1,10 @@
 {
+  // Root .venv → symlink to week6/.venv (Plotly + pandas). Pick week5/.venv in the kernel list for week5-only.
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "jupyter.interpreter": "${workspaceFolder}/.venv/bin/python",
-  "python-envs.workspaceSearchPaths": ["./**/.venv", "./week5/.venv"]
+  "python-envs.workspaceSearchPaths": [
+    "./week6/.venv",
+    "./week5/.venv",
+    "./**/.venv"
+  ]
 }
