@@ -9,4 +9,6 @@ Evidence in my repo: the script is week4/shows_on_mybday.py, and the main output
 
 TVMaze did not require an API key. A .env file and .gitignore were set up in week4/ anyway, because if an API key had been needed, that would be the correct way to keep it out of a public repository.
 
+HCD REFLECTION: ThiS  is connected to human-centered design in a few ways. First, the data I was working with from the reviews API includes ratings and helpful votes, which represent real user feedback. When I summarized that data by category, I was essentially asking which areas people found most useful or frustrating, which is the kind of question that would directly inform a design team's decisions. In the TVMaze script, I combined the show's type and genre into a single label so the CSV would be easier for a person to scan and interpret, rather than leaving them as separate raw fields. TVMaze is a website where people track and discover TV shows, so the data it returns is grounded in real human viewing habits. Finally, even though TVMaze did not require an API key, I still set up a .env file and .gitignore because building responsible habits around protecting credentials is part of designing trustworthy systems.
+
 
