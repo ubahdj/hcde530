@@ -54,19 +54,23 @@ reviews = [
     "Overall I recommend this app because it balances simplicity with useful functionality.",
 ]
 
-#This functions is used to count the numder of the words in the string 
+
 def count_words(text):
+     # splits on whitespace to stay consistent with demo_word_count.py
     """Return the number of words in a string."""
     return len(text.split())
 
-#this is to check that the number is exactly 50 
+# Validate before the loop so any accidental edits to the reviews
+# list are caught immediately, not halfway through printed output
 if len(reviews) != 50:
     raise ValueError("Expected exactly 50 reviews in the list.")
-# this is to pring the review, words and preview 
+
 print(f"{'Review #':<10} {'Words':<6} {'Preview'}")
 print("-" * 72)
-#This counts the words in the review 
+
 word_counts = []
+# start=1 so review numbers match natural counting (1–50)
+# rather than Python's default zero-based indexing
 for i, review in enumerate(reviews, start=1):
     words = count_words(review)
     word_counts.append(words)
